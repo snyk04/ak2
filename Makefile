@@ -1,14 +1,18 @@
+CC = g++
+CFLAGS = -c -Wall
+OUT = output
+
 all: main.o calculator.o mylib.a
-	g++ main.o calculator.o -o output
-	
+	$(CC) main.o calculator.o -o $(OUT)
+
 main.o: main.cpp
-	g++ -c -Wall main.cpp
+	$(CC) $(CFLAGS) main.cpp
 
 calculator.o: calculator.cpp
-	g++ -c -Wall calculator.cpp
+	$(CC) $(CFLAGS) calculator.cpp
 
 mylib.a: calculator.cpp
 	ar -rcs mylib.a calculator.o
 
 clean:
-	rm -rf *.o output
+	rm -rf *.o $(OUT)
