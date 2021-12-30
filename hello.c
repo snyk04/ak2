@@ -41,8 +41,11 @@ static int __init hello_init(void)
     for (i = 0; i < amount; i++) 
     {
         struct my_struct *ms = NULL;
-
-        ms = kmalloc(sizeof(struct my_struct), GFP_KERNEL);
+	
+	if (i != 3)
+	{
+	    ms = kmalloc(sizeof(struct my_struct), GFP_KERNEL);
+	}
         ms->time = ktime_get();
         list_add_tail(&ms->tlist, &my_list_head);
 
